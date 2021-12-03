@@ -1,3 +1,4 @@
+import io
 import math
 from collections.abc import Iterator
 
@@ -5,11 +6,12 @@ from collections.abc import Iterator
 def solution_part1(report: str) -> int:
     total = 0
     previous = math.inf
-    for number in report.split("\n"):
-        number = float(number)
-        if number > previous:
-            total += 1
-        previous = number
+    with io.StringIO(report) as report_reader:
+        for number in report_reader:
+            number = float(number)
+            if number > previous:
+                total += 1
+            previous = number
 
     return total
 
