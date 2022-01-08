@@ -1,0 +1,2 @@
+forward -1
+down 1

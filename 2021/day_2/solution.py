@@ -1,12 +1,10 @@
-import io
-import math
-from collections.abc import Iterator
+from pathlib import Path
 
 
-def solution_part1(commands: str) -> int:
+def solution_part1(commands_file_path: Path) -> int:
     horizontal = 0
     depth = 0
-    with io.StringIO(commands) as commands_reader:
+    with commands_file_path.open() as commands_reader:
         for line in commands_reader:
             command, value = line.split(" ")
             value = int(value)
@@ -21,11 +19,11 @@ def solution_part1(commands: str) -> int:
     return horizontal * depth
 
 
-def solution_part2(commands: str) -> int:
+def solution_part2(commands_file_path: Path) -> int:
     horizontal = 0
     depth = 0
     aim = 0
-    with io.StringIO(commands) as commands_reader:
+    with commands_file_path.open() as commands_reader:
         for line in commands_reader:
             command, value = line.split(" ")
             value = int(value)

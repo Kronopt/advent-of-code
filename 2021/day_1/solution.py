@@ -1,12 +1,12 @@
-import io
 import math
 from collections.abc import Iterator
+from pathlib import Path
 
 
-def solution_part1(report: str) -> int:
+def solution_part1(report_file_path: Path) -> int:
     total = 0
     previous = math.inf
-    with io.StringIO(report) as report_reader:
+    with report_file_path.open() as report_reader:
         for number in report_reader:
             number = float(number)
             if number > previous:
@@ -16,10 +16,13 @@ def solution_part1(report: str) -> int:
     return total
 
 
-def solution_part2(report: str) -> int:
+def solution_part2(report_file_path: Path) -> int:
     total = 0
     previous = math.inf
-    numbers = report.split("\n")
+
+    with report_file_path.open() as report_reader:
+        numbers = report_reader.readlines()
+
     for i in range(len(numbers) - 2):  # 3 element sliding window
         sum_sliding_window = sum(
             (float(numbers[i]), float(numbers[i + 1]), float(numbers[i + 2]))
